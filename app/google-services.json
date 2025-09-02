@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "277406009863",
+    "project_id": "temucafe-62d46902",
+    "storage_bucket": "temucafe-62d46902.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277406009863:android:5bf46028401ea7e6fc38a2",
+        "android_client_info": {
+          "package_name": "com.example.temucafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLFCDGjnOm9K-LQryw3PGtLW6zPEW1QsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
