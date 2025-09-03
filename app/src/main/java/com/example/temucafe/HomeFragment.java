@@ -5,14 +5,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.temucafe.adapters.CoffeeShopAdapter;
+import com.example.temucafe.adapters.HorizontalCoffeeShopAdapter;
+import com.example.temucafe.adapters.MallAdapter;
 import com.example.temucafe.models.CoffeeShop;
+import com.example.temucafe.models.Mall;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -26,17 +34,19 @@ import java.util.Map;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
-    // For Industrial Coffee Shops
-    private RecyclerView industrialRecyclerView;
-    private CoffeeShopAdapter industrialAdapter;
-    private List<CoffeeShop> industrialList;
-
-    // For Franchise Coffee Shops
-    private RecyclerView franchiseRecyclerView;
-    private CoffeeShopAdapter franchiseAdapter; // We can reuse the same adapter
-    private List<CoffeeShop> franchiseList;
-
     private FirebaseFirestore db;
+
+    private RecyclerView industrialRecyclerView, franchiseRecyclerView, mallRecyclerView;
+    private HorizontalCoffeeShopAdapter industrialAdapter, franchiseAdapter;
+    private MallAdapter mallAdapter;
+    private List<CoffeeShop> industrialList, franchiseList;
+    private List<Mall> mallList;
+
+    // --- NEW: Views for the Best Temu Banner ---
+    private CardView bestTemuCard;
+    private TextView bestTemuNameLocation;
+    private ShapeableImageView bestTemuImage;
+    private CoffeeShop bestTemuShop; // To store the fetched shop details
 
     public HomeFragment() {
         // Required empty public constructor
@@ -50,6 +60,12 @@ public class HomeFragment extends Fragment {
         // Replace the static includes in fragment_home.xml with this RecyclerView
         industrialRecyclerView = view.findViewById(R.id.rvIndustrialCoffee);
         franchiseRecyclerView = view.findViewById(R.id.franchise_recycler_view);
+        mallRecyclerView = view.findViewById(R.id.mall_recycler_view);
+
+        // --- NEW: Find Banner Views ---
+        bestTemuCard = view.findViewById(R.id.best_temu_card);
+        bestTemuNameLocation = view.findViewById(R.id.best_temu_name_location);
+        bestTemuImage = view.findViewById(R.id.best_temu_image);
 
         return view;
     }
@@ -60,46 +76,81 @@ public class HomeFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
-        industrialRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        industrialList = new ArrayList<>();
-        industrialAdapter = new CoffeeShopAdapter(getContext(), industrialList);
-        industrialRecyclerView.setAdapter(industrialAdapter);
+        // Setup All RecyclerViews
+        setupIndustrialRecycler();
+        setupFranchiseRecycler();
+        setupMallRecycler();
 
-        franchiseRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        franchiseList = new ArrayList<>();
-        franchiseAdapter = new CoffeeShopAdapter(getContext(), franchiseList);
-        franchiseRecyclerView.setAdapter(franchiseAdapter);
-
-        fetchFranchiseCoffeeShops();
+        // Fetch All Data
         fetchIndustrialCoffeeShops();
+        fetchFranchiseCoffeeShops();
+        fetchMalls();
+        fetchBestTemuOfTheWeek();
+
+        // Setup All Listeners
         setupIndustrialClickListener();
         setupFranchiseClickListener();
+        setupMallClickListener();
+        setupBestTemuClickListener();
 
         // Untuk bagian mall
-        ViewGroup mallContainer = view.findViewById(R.id.malls_category);
-        setClickListenersByTag(mallContainer, "openMall", new DetailMallFragment());
+//        ViewGroup mallContainer = view.findViewById(R.id.malls_category);
+//        setClickListenersByTag(mallContainer, "openMall", new DetailMallFragment());
     }
 
-    private void setClickListenersByTag(ViewGroup container, String tagToMatch, Fragment fragmentToOpen) {
-        if (container == null) return;
+    // --- NEW: Method to fetch the featured coffee shop ---
+    private void fetchBestTemuOfTheWeek() {
+        // We query the 'coffee_shop' collection for the document with our flag
+        db.collection("coffee_shop")
+                .whereEqualTo("bestOfTheWeek", true)
+                .limit(1) // We only need one
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        // Get the first (and only) document from the result
+                        QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
+                        bestTemuShop = document.toObject(CoffeeShop.class);
+                        bestTemuShop.setDocumentId(document.getId());
 
-        int count = container.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View child = container.getChildAt(i);
-            if (child instanceof CardView) {
-                Object tag = child.getTag();
-                if (tag != null && tag.equals(tagToMatch)) {
-                    child.setOnClickListener(v -> {
-                        FragmentTransaction transaction = requireActivity()
-                                .getSupportFragmentManager()
-                                .beginTransaction();
-                        transaction.replace(R.id.fragment_container, fragmentToOpen);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
-                    });
-                }
-            }
-        }
+                        // Update the banner UI
+                        String nameAndLocation = bestTemuShop.getName() + "\n" + bestTemuShop.getLocation();
+                        bestTemuNameLocation.setText(nameAndLocation);
+
+                        if (getContext() != null) {
+                            Glide.with(getContext())
+                                    .load(bestTemuShop.getLogoIconUrl())
+                                    .into(bestTemuImage);
+                        }
+                    } else {
+                        // Handle case where no "best" is found
+                        bestTemuCard.setVisibility(View.GONE);
+                        Log.w("Firestore", "Could not find a 'bestOfTheWeek' document.", task.getException());
+                    }
+                });
+    }
+
+    // --- SETUP METHODS ---
+    private void setupIndustrialRecycler() {
+        industrialList = new ArrayList<>();
+        // Use the new adapter
+        industrialAdapter = new HorizontalCoffeeShopAdapter(getContext(), industrialList); // <-- CHANGE HERE
+        industrialRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        industrialRecyclerView.setAdapter(industrialAdapter);
+    }
+
+    private void setupFranchiseRecycler() {
+        franchiseList = new ArrayList<>();
+        // Use the new adapter
+        franchiseAdapter = new HorizontalCoffeeShopAdapter(getContext(), franchiseList); // <-- CHANGE HERE
+        franchiseRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        franchiseRecyclerView.setAdapter(franchiseAdapter);
+    }
+
+    private void setupMallRecycler() {
+        mallList = new ArrayList<>();
+        mallAdapter = new MallAdapter(getContext(), mallList);
+        mallRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mallRecyclerView.setAdapter(mallAdapter);
     }
 
     private void fetchIndustrialCoffeeShops() {
@@ -142,6 +193,37 @@ public class HomeFragment extends Fragment {
                 });
     }
 
+    private void fetchMalls() {
+        db.collection("malls").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                mallList.clear();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Mall mall = document.toObject(Mall.class);
+                    mall.setDocumentId(document.getId());
+                    mallList.add(mall);
+                }
+                mallAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void setupBestTemuClickListener() {
+        bestTemuCard.setOnClickListener(v -> {
+            if (bestTemuShop != null) {
+                // Navigate to the correct detail page
+                DetailItemFragment detailFragment = new DetailItemFragment();
+                Bundle args = new Bundle();
+                args.putString("COFFEESHOP_ID", bestTemuShop.getDocumentId());
+                detailFragment.setArguments(args);
+
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, detailFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
+
     private void setupIndustrialClickListener() {
         industrialAdapter.setOnItemClickListener(coffeeShop -> {
             DetailItemFragment detailFragment = new DetailItemFragment();
@@ -167,6 +249,21 @@ public class HomeFragment extends Fragment {
             transaction.replace(R.id.fragment_container, detailFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+        });
+    }
+
+    private void setupMallClickListener() {
+        mallAdapter.setOnItemClickListener(mall -> {
+            MallCoffeeListFragment fragment = new MallCoffeeListFragment();
+            Bundle args = new Bundle();
+            args.putString("MALL_ID", mall.getDocumentId());
+            args.putString("MALL_NAME", mall.getName());
+            fragment.setArguments(args);
+
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 

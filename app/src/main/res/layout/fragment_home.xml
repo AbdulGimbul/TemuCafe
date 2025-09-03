@@ -58,6 +58,7 @@
 
         <!-- Best Temu of The Week -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/best_temu_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -85,6 +86,7 @@
                         android:layout_width="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/best_temu_name_location"
                         android:text="GlasMacher\nCempaka Putih Barat"
                         android:textSize="20sp"
                         android:textColor="#FCF2D9"
@@ -117,6 +119,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/best_temu_image"
                     android:layout_width="88dp"
                     android:layout_height="88dp"
                     android:src="@drawable/coffeshop_home_glass_coffe"
@@ -227,146 +230,16 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
-        <!-- Horizontal list for coffees -->
-        <HorizontalScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mall_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_marginTop="8dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/malls_category"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openMall"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/mall_green_pramuka_square"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Green Pramuka\nSquare"
-                            android:textColor="@android:color/white"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openMall"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/mall_transmart_cempaka_putih"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Transmart Cempaka Putih"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openMall"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/mall_itc_cempakamas"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ITC Cempakamas"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

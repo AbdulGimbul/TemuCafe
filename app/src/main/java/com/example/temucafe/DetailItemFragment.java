@@ -32,6 +32,7 @@ import java.util.Map;
  */
 public class DetailItemFragment extends Fragment {
     private FirebaseFirestore db;
+    private String mallId;
     private String coffeeShopId;
     private CoffeeShop currentCoffeeShop;
 
@@ -82,6 +83,7 @@ public class DetailItemFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         if (getArguments() != null) {
+            mallId = getArguments().getString("MALL_ID");
             coffeeShopId = getArguments().getString("COFFEESHOP_ID");
         }
     }
@@ -123,17 +125,23 @@ public class DetailItemFragment extends Fragment {
     }
 
     private void fetchCoffeeShopDetails(String docId) {
-        DocumentReference docRef = db.collection("coffee_shop").document(docId);
+        DocumentReference docRef;
+        if (mallId != null) {
+            // It's a coffee shop inside a mall
+            docRef = db.collection("malls").document(mallId).collection("coffeeshops").document(docId);
+        } else {
+            // It's a top-level industrial coffee shop
+            docRef = db.collection("coffee_shop").document(docId);
+        }
+
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 currentCoffeeShop = documentSnapshot.toObject(CoffeeShop.class);
                 if (currentCoffeeShop != null) {
                     populateUI(currentCoffeeShop);
                 }
-            } else {
-                Log.d("Firestore", "No such document");
             }
-        }).addOnFailureListener(e -> Log.d("Firestore", "get failed with ", e));
+        });
     }
 
     private void setupClickListeners() {
