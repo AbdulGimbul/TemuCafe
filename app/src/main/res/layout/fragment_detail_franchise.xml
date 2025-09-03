@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_detail_item"
+    android:id="@+id/fragment_detail_franchise"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8E3B6"
@@ -20,7 +20,7 @@
                 android:id="@+id/greeting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Are you interested?"
+                android:text="Welcome!"
                 android:textColor="#8B572A"
                 android:textSize="18sp"
                 android:fontFamily="@font/raleway_bold"
@@ -86,7 +86,7 @@
                         android:id="@+id/place_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mattea Social Space,"
+                        android:text="Franchise Name"
                         android:textSize="20sp"
                         android:textColor="@color/light_brown"
                         android:fontFamily="@font/raleway_bold"
@@ -99,7 +99,7 @@
                         android:id="@+id/place_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cempaka Putih Timur"
+                        android:text="Franchise Location"
                         android:textSize="16sp"
                         android:textColor="@color/light_brown"
                         android:shadowColor="#80000000"
@@ -234,7 +234,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Jl. Rawsari Bar. I No.35, RT.7/RW.1, Cemp. Putih Tim., Kec. Cemp. Putih, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10520"
+                        android:text="Address"
                         android:textColor="#6F4E37"
                         android:textSize="14sp"
                         />
@@ -256,7 +256,7 @@
                         android:id="@+id/place_hours"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="8.00 am – 12.00 am"
+                        android:text="Hours"
                         android:textColor="#6F4E37"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -268,7 +268,6 @@
                 android:background="#D6C5A6"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
-
 
             <TextView
                 android:text="Accessibility"
@@ -298,7 +297,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
 
-
             <TextView
                 android:text="Service Options"
                 android:layout_width="wrap_content"
@@ -327,7 +325,6 @@
                 android:background="#D6C5A6"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
-
 
             <TextView
                 android:text="Parking"

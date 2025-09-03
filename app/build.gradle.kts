@@ -64,9 +64,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("com.google.android.material:material:1.12.0")
+    implementation(libs.material.v1120)
 
-    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+    implementation(platform(libs.firebase.bom))
 
-
+    implementation(libs.firebase.firestore)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -137,185 +138,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
-        <!-- Horizontal list for coffees -->
-        <HorizontalScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvIndustrialCoffee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/industrials_category"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openDetail"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/coffeshop_home_glass_coffe"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Glasmacher Coffee"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openDetail"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/coffeshop_matea_social_space"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Matea Social Space"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openDetail"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/coffeshop_loca_house"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Loca House"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:tag="openDetail"
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/coffeshop_terasa"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Terasa"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-        </HorizontalScrollView>
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/industrial_coffee_item" />
 
         <!-- Section 2 Title -->
         <TextView
@@ -376,181 +206,16 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
-        <!-- Horizontal list for coffees -->
-        <HorizontalScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/franchise_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_marginTop="8dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/f_coffeshop_tomoro"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tomoro"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/f_coffeshop_fore"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fore Coffe"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <!-- Gambar utama -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/f_coffeshop_arah_coffe"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Arah Coffe"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Item card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="180dp"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/f_coffeshop_starbucks"
-                            android:contentDescription="Industrial Coffee" />
-
-                        <!-- View gradasi -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_gravity="bottom"
-                            android:background="@drawable/gradient_bottom" />
-
-                        <!-- Text di tengah bawah -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Starbucks"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="30dp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Tambahkan card lainnya jika perlu -->
-
-            </LinearLayout>
-        </HorizontalScrollView>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <!-- Section 3 Title -->
         <TextView
