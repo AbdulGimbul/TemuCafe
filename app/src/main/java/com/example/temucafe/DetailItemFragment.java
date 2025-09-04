@@ -3,10 +3,6 @@ package com.example.temucafe;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.example.temucafe.models.CoffeeShop;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +37,8 @@ public class DetailItemFragment extends Fragment {
     private TextView greetingText, placeName, placeLocation;
     private TextView accessibilityText, serviceOptionsText, placeAddress, placeHours, parkingText;
     private ImageView headerImage;
-    private LinearLayout directionsButton, menusButton, shareButton;
+    private LinearLayout directionsButton, menusButton, shareButton, setAsBestButton;
+    ;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -107,6 +105,7 @@ public class DetailItemFragment extends Fragment {
         directionsButton = view.findViewById(R.id.directions);
         menusButton = view.findViewById(R.id.menus); // Find the menus button by its ID
         shareButton = view.findViewById(R.id.share); // Find the share button by its ID
+        setAsBestButton = view.findViewById(R.id.set_best_of_week); // Find the set as best button by its ID
 
         return view;
     }
@@ -181,6 +180,12 @@ public class DetailItemFragment extends Fragment {
                 Toast.makeText(getContext(), "Location link is not available to share.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        setAsBestButton.setOnClickListener(v -> {
+            if (currentCoffeeShop != null) {
+                setAsBestOfTheWeek();
+            }
+        });
     }
 
     private void populateUI(CoffeeShop coffeeShop) {
@@ -209,4 +214,37 @@ public class DetailItemFragment extends Fragment {
         }
     }
 
+    // In DetailItemFragment.java
+    private void setAsBestOfTheWeek() {
+        final CollectionReference collection;
+        if (mallId != null) {
+            collection = db.collection("malls").document(mallId).collection("coffeeshops");
+        } else {
+            collection = db.collection("coffee_shop");
+        }
+
+        collection.whereEqualTo("bestOfTheWeek", true).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                WriteBatch batch = db.batch();
+
+                // --- CORRECTED LOOP ---
+                // Iterate over DocumentSnapshot, not DocumentReference
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    // Get the reference from the snapshot to update it
+                    batch.update(document.getReference(), "bestOfTheWeek", FieldValue.delete());
+                }
+
+                DocumentReference newBestRef = collection.document(coffeeShopId);
+                batch.update(newBestRef, "bestOfTheWeek", true);
+
+                batch.commit().addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Set as Best of the Week!", Toast.LENGTH_SHORT).show();
+                    // Navigate back to home to see the change
+                    getParentFragmentManager().popBackStack();
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to set: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+    }
 }

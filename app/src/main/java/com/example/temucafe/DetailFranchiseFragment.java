@@ -17,9 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.temucafe.models.CoffeeShop; // We can reuse the CoffeeShop model
+import com.example.temucafe.models.CoffeeShop;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 public class DetailFranchiseFragment extends Fragment {
 
@@ -31,7 +35,7 @@ public class DetailFranchiseFragment extends Fragment {
     private TextView greetingText, placeName, placeLocation, placeAddress, placeHours;
     private TextView accessibilityText, serviceOptionsText, parkingText;
     private ImageView headerImage, logoIcon;
-    private LinearLayout directionsButton, menusButton, shareButton;
+    private LinearLayout directionsButton, menusButton, shareButton, setAsBestButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class DetailFranchiseFragment extends Fragment {
         directionsButton = view.findViewById(R.id.directions);
         menusButton = view.findViewById(R.id.menus);
         shareButton = view.findViewById(R.id.share);
+        setAsBestButton = view.findViewById(R.id.set_best_of_week);
 
         if (franchiseId != null && !franchiseId.isEmpty()) {
             fetchFranchiseDetails(franchiseId);
@@ -114,6 +119,12 @@ public class DetailFranchiseFragment extends Fragment {
                 Toast.makeText(getContext(), "Location not available to share.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        setAsBestButton.setOnClickListener(v -> {
+            if (currentFranchise != null) {
+                setAsBestOfTheWeek();
+            }
+        });
     }
 
     private void populateUI(CoffeeShop coffeeShop) {
@@ -137,5 +148,33 @@ public class DetailFranchiseFragment extends Fragment {
             Glide.with(getContext()).load(coffeeShop.getBannerImageUrl()).into(headerImage);
             Glide.with(getContext()).load(coffeeShop.getLogoIconUrl()).into(logoIcon);
         }
+    }
+
+    // In DetailFranchiseFragment.java
+    private void setAsBestOfTheWeek() {
+        CollectionReference collection = db.collection("franchise_coffees");
+
+        collection.whereEqualTo("bestOfTheWeek", true).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                WriteBatch batch = db.batch();
+
+                // --- CORRECTED LOOP ---
+                // Iterate over DocumentSnapshot, not DocumentReference
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    // Get the reference from the snapshot to update it
+                    batch.update(document.getReference(), "bestOfTheWeek", FieldValue.delete());
+                }
+
+                DocumentReference newBestRef = collection.document(franchiseId);
+                batch.update(newBestRef, "bestOfTheWeek", true);
+
+                batch.commit().addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Set as Best of the Week!", Toast.LENGTH_SHORT).show();
+                    getParentFragmentManager().popBackStack();
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to set: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
     }
 }
