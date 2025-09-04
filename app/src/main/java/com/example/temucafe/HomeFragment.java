@@ -1,5 +1,6 @@
 package com.example.temucafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -21,6 +23,8 @@ import com.example.temucafe.adapters.MallAdapter;
 import com.example.temucafe.models.CoffeeShop;
 import com.example.temucafe.models.Mall;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,6 +39,7 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     private RecyclerView industrialRecyclerView, franchiseRecyclerView, mallRecyclerView;
     private HorizontalCoffeeShopAdapter industrialAdapter, franchiseAdapter;
@@ -47,6 +52,9 @@ public class HomeFragment extends Fragment {
     private TextView bestTemuNameLocation;
     private ShapeableImageView bestTemuImage;
     private CoffeeShop bestTemuShop; // To store the fetched shop details
+
+    private TextView greetingTextView;
+    private ImageView menuIcon;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -66,6 +74,8 @@ public class HomeFragment extends Fragment {
         bestTemuCard = view.findViewById(R.id.best_temu_card);
         bestTemuNameLocation = view.findViewById(R.id.best_temu_name_location);
         bestTemuImage = view.findViewById(R.id.best_temu_image);
+        greetingTextView = view.findViewById(R.id.greeting);
+        menuIcon = view.findViewById(R.id.menuIcon);
 
         return view;
     }
@@ -75,8 +85,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         // Setup All RecyclerViews
+        loadUserProfile();
         setupIndustrialRecycler();
         setupFranchiseRecycler();
         setupMallRecycler();
@@ -88,6 +100,7 @@ public class HomeFragment extends Fragment {
         fetchBestTemuOfTheWeek();
 
         // Setup All Listeners
+        setupLogoutButton();
         setupIndustrialClickListener();
         setupFranchiseClickListener();
         setupMallClickListener();
@@ -96,6 +109,20 @@ public class HomeFragment extends Fragment {
         // Untuk bagian mall
 //        ViewGroup mallContainer = view.findViewById(R.id.malls_category);
 //        setClickListenersByTag(mallContainer, "openMall", new DetailMallFragment());
+    }
+
+    private void loadUserProfile() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String email = currentUser.getEmail();
+            // Check if email is not null before processing
+            if (email != null && !email.isEmpty()) {
+                // Split the email at the "@" and take the first part
+                String username = email.split("@")[0];
+                // Set the custom greeting text
+                greetingTextView.setText("What's up, " + username);
+            }
+        }
     }
 
     // --- NEW: Method to fetch the featured coffee shop ---
@@ -264,6 +291,25 @@ public class HomeFragment extends Fragment {
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
                     .commit();
+        });
+    }
+
+    // --- NEW: Method to handle the logout process ---
+    private void setupLogoutButton() {
+        menuIcon.setOnClickListener(v -> {
+            // Sign the user out of Firebase
+            mAuth.signOut();
+            Toast.makeText(getContext(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+            // Create an intent to go back to the LandingActivity
+            Intent intent = new Intent(getActivity(), LandingActivity.class);
+            // These flags clear the entire task stack, so the user can't press "back" to get into the app
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            // Finish the current activity (MainMenuActivity)
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
         });
     }
 

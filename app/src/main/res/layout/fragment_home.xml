@@ -32,23 +32,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-            <!-- Notifikasi di kanan -->
-            <ImageView
-                android:id="@+id/notifIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_notif_active"
-                app:layout_constraintEnd_toStartOf="@id/menuIcon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="8dp"/>
-
             <!-- Hamburger menu di paling kanan -->
             <ImageView
                 android:id="@+id/menuIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_hamburger"
+                android:src="@drawable/baseline_logout_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

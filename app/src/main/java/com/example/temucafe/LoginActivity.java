@@ -1,19 +1,26 @@
 package com.example.temucafe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnGoToSignup;
     FirebaseAuth mAuth;
     DatabaseReference usersRef;
+    private TextView forgotPasswordTextView;
 
     boolean isPasswordVisible = false;
 
@@ -50,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         ivTogglePassword = findViewById(R.id.ivTogglePassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnGoToSignup = findViewById(R.id.btnGoToSignup);
+        forgotPasswordTextView = findViewById(R.id.forgot_password);
 
         ivTogglePassword.setOnClickListener(view -> {
             if (isPasswordVisible) {
@@ -83,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
 
         btnGoToSignup.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+        });
+
+        // --- NEW: Set up the click listener for "Forgot Password" ---
+        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showForgotPasswordDialog();
+            }
         });
     }
 
@@ -122,5 +139,54 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    // --- NEW: Method to show the password reset dialog ---
+    private void showForgotPasswordDialog() {
+        // Create an EditText to get the user's email
+        final EditText resetMail = new EditText(this);
+        resetMail.setHint("Enter your email address");
+
+        // Build the AlertDialog
+        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(this);
+        passwordResetDialog.setTitle("Reset Password");
+        passwordResetDialog.setMessage("Enter your email to receive a password reset link.");
+        passwordResetDialog.setView(resetMail);
+
+        // "Send" button logic
+        passwordResetDialog.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String mail = resetMail.getText().toString().trim();
+                if (TextUtils.isEmpty(mail)) {
+                    Toast.makeText(LoginActivity.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Call Firebase to send the reset email
+                mAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Reset link sent to your email.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Error! Reset link could not be sent. " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        // "Cancel" button logic
+        passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Close the dialog
+                dialog.dismiss();
+            }
+        });
+
+        // Show the dialog
+        passwordResetDialog.create().show();
     }
 }
