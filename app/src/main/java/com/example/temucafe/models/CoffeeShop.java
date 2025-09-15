@@ -7,6 +7,24 @@ import java.util.List;
 
 public class CoffeeShop {
 
+    // At the top with other variable declarations
+    @Exclude
+    private String originType; // e.g., "industrial", "franchise"
+    @Exclude
+    private String mallId; // Only used if it's from a mall
+
+    // In the Getters section
+    @Exclude
+    public String getOriginType() { return originType; }
+    @Exclude
+    public String getMallId() { return mallId; }
+
+    // In the Setters section
+    @Exclude
+    public void setOriginType(String originType) { this.originType = originType; }
+    @Exclude
+    public void setMallId(String mallId) { this.mallId = mallId; }
+
     // IMPORTANT: These variable names must EXACTLY match the keys in your Firestore documents.
     private String name;
     private String location;

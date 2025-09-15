@@ -21,6 +21,7 @@ import com.example.temucafe.adapters.HorizontalCoffeeShopAdapter;
 import com.example.temucafe.adapters.MallAdapter;
 import com.example.temucafe.models.CoffeeShop;
 import com.example.temucafe.models.Mall;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment {
     private List<Mall> mallList;
 
     // --- NEW: Views for the Best Temu Banner ---
-    private CardView bestTemuCard;
+    private CardView bestTemuCard, searchBannerCard;;
     private TextView bestTemuNameLocation;
     private ShapeableImageView bestTemuImage;
     private CoffeeShop bestTemuShop; // To store the fetched shop details
@@ -66,6 +67,7 @@ public class HomeFragment extends Fragment {
 
         // --- NEW: Find Banner Views ---
         bestTemuCard = view.findViewById(R.id.best_temu_card);
+        searchBannerCard = view.findViewById(R.id.search_banner_card);
         bestTemuNameLocation = view.findViewById(R.id.best_temu_name_location);
         bestTemuImage = view.findViewById(R.id.best_temu_image);
         greetingTextView = view.findViewById(R.id.greeting);
@@ -99,6 +101,7 @@ public class HomeFragment extends Fragment {
         setupFranchiseClickListener();
         setupMallClickListener();
         setupBestTemuClickListener();
+        setupSearchBannerListener();
 
         // Untuk bagian mall
 //        ViewGroup mallContainer = view.findViewById(R.id.malls_category);
@@ -224,6 +227,19 @@ public class HomeFragment extends Fragment {
                     mallList.add(mall);
                 }
                 mallAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void setupSearchBannerListener() {
+        searchBannerCard.setOnClickListener(v -> {
+            // Find the BottomNavigationView from the parent activity
+            if (getActivity() != null) {
+                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation);
+                if (bottomNav != null) {
+                    // Set the selected item to the search icon's ID
+                    bottomNav.setSelectedItemId(R.id.nav_search);
+                }
             }
         });
     }
