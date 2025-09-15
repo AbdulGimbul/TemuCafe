@@ -28,23 +28,20 @@ import com.google.firebase.firestore.WriteBatch;
  * create an instance of this fragment.
  */
 public class DetailItemFragment extends Fragment {
-    private FirebaseFirestore db;
-    private String mallId;
-    private String coffeeShopId;
-    private CoffeeShop currentCoffeeShop;
-
-    // UI Elements from your fragment_detail_item.xml
-    private TextView greetingText, placeName, placeLocation;
-    private TextView accessibilityText, serviceOptionsText, placeAddress, placeHours, parkingText;
-    private ImageView headerImage;
-    private LinearLayout directionsButton, menusButton, shareButton, setAsBestButton;
-    ;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private FirebaseFirestore db;
+    private String mallId;
+    private String coffeeShopId;
+    private CoffeeShop currentCoffeeShop;
+    // UI Elements from your fragment_detail_item.xml
+    private TextView greetingText, placeName, placeLocation;
+    private TextView accessibilityText, serviceOptionsText, placeAddress, placeHours, parkingText;
+    ;
+    private ImageView headerImage;
+    private LinearLayout directionsButton, menusButton, shareButton, setAsBestButton;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;

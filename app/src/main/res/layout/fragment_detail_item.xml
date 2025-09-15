@@ -7,9 +7,9 @@
     android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,15 +20,15 @@
                 android:id="@+id/greeting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/raleway_bold"
                 android:text="Are you interested?"
                 android:textColor="#8B572A"
                 android:textSize="18sp"
-                android:fontFamily="@font/raleway_bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="8dp" />
-            
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
@@ -43,50 +43,50 @@
                 android:src="@drawable/detail_item_matea_social_space" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="16dp"
                 android:background="@android:color/transparent"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/logoIcon"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/ic_matea_social_space"
-                    android:layout_marginEnd="12dp" />
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_matea_social_space" />
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/place_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mattea Social Space,"
-                        android:textSize="20sp"
-                        android:textColor="@color/light_brown"
                         android:fontFamily="@font/raleway_bold"
                         android:shadowColor="#80000000"
                         android:shadowDx="0"
                         android:shadowDy="2"
-                        android:shadowRadius="4" />
+                        android:shadowRadius="4"
+                        android:text="Mattea Social Space,"
+                        android:textColor="@color/light_brown"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/place_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cempaka Putih Timur"
-                        android:textSize="16sp"
-                        android:textColor="@color/light_brown"
                         android:shadowColor="#80000000"
                         android:shadowDx="0"
                         android:shadowDy="1"
-                        android:shadowRadius="2" />
+                        android:shadowRadius="2"
+                        android:text="Cempaka Putih Timur"
+                        android:textColor="@color/light_brown"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -94,115 +94,123 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FCF2D9"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#FCF2D9">
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:weightSum="4">
 
                 <LinearLayout
                     android:id="@+id/directions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/ic_directions" />
+
                     <TextView
-                        android:text="Directions"
-                        android:textSize="12sp"
-                        android:textColor="@color/dark_brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
                         android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:text="Directions"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/menus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/ic_menus" />
+
                     <TextView
-                        android:text="Menus"
-                        android:textSize="12sp"
-                        android:textColor="@color/dark_brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
                         android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:text="Menus"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/set_best_of_week"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/ic_add_wishlist" />
+
                     <TextView
-                        android:text="Set as Best"
-                        android:textSize="12sp"
-                        android:textColor="@color/dark_brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
                         android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:text="Set as Best"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/share"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/ic_share" />
+
                     <TextView
-                        android:text="Share"
-                        android:textSize="12sp"
-                        android:textColor="@color/dark_brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
                         android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:text="Share"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="8dp"
-                    android:gravity="start|center_vertical">
+                    android:gravity="start|center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="25dp"
@@ -217,15 +225,14 @@
                         android:layout_weight="1"
                         android:text="Jl. Rawsari Bar. I No.35, RT.7/RW.1, Cemp. Putih Tim., Kec. Cemp. Putih, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10520"
                         android:textColor="#6F4E37"
-                        android:textSize="14sp"
-                        />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start|center_vertical">
+                    android:gravity="start|center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="25dp"
@@ -246,90 +253,90 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#D6C5A6"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:background="#D6C5A6" />
 
 
             <TextView
-                android:text="Accessibility"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginBottom="4dp"
+                android:text="Accessibility"
                 android:textColor="#4A3F2A"
                 android:textSize="16sp"
-                android:layout_marginBottom="4dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/accessibility_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accessibility details here"
-                android:textColor="#6F4E37"
-                android:textSize="14sp"
+                android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/ic_blocks"
                 android:drawablePadding="8dp"
                 android:paddingStart="15dp"
-                android:layout_marginTop="5dp"/>
+                android:text="Accessibility details here"
+                android:textColor="#6F4E37"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#D6C5A6"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:background="#D6C5A6" />
 
 
             <TextView
-                android:text="Service Options"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginBottom="4dp"
+                android:text="Service Options"
                 android:textColor="#4A3F2A"
                 android:textSize="16sp"
-                android:layout_marginBottom="4dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/service_options_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Service options details here"
-                android:textColor="#6F4E37"
-                android:textSize="14sp"
+                android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/ic_smiles"
                 android:drawablePadding="8dp"
                 android:paddingStart="15dp"
-                android:layout_marginTop="5dp"/>
+                android:text="Service options details here"
+                android:textColor="#6F4E37"
+                android:textSize="14sp" />
 
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#D6C5A6"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:background="#D6C5A6" />
 
 
             <TextView
-                android:text="Parking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginBottom="4dp"
+                android:text="Parking"
                 android:textColor="#4A3F2A"
                 android:textSize="16sp"
-                android:layout_marginBottom="4dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/parking_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Parking details here"
-                android:textColor="#6F4E37"
-                android:textSize="14sp"
+                android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/ic_smiles"
                 android:drawablePadding="8dp"
                 android:paddingStart="15dp"
-                android:layout_marginTop="5dp"/>
+                android:text="Parking details here"
+                android:textColor="#6F4E37"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </LinearLayout>

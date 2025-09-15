@@ -1,14 +1,13 @@
 package com.example.temucafe.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,18 +22,13 @@ public class CoffeeShopAdapter extends RecyclerView.Adapter<CoffeeShopAdapter.Vi
     private final List<CoffeeShop> coffeeShopList;
     private OnItemClickListener listener;
 
-    // Interface to handle click events
-    public interface OnItemClickListener {
-        void onItemClick(CoffeeShop coffeeShop);
+    public CoffeeShopAdapter(Context context, List<CoffeeShop> coffeeShopList) {
+        this.context = context;
+        this.coffeeShopList = coffeeShopList;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
-    }
-
-    public CoffeeShopAdapter(Context context, List<CoffeeShop> coffeeShopList) {
-        this.context = context;
-        this.coffeeShopList = coffeeShopList;
     }
 
     @NonNull
@@ -53,6 +47,11 @@ public class CoffeeShopAdapter extends RecyclerView.Adapter<CoffeeShopAdapter.Vi
     @Override
     public int getItemCount() {
         return coffeeShopList.size();
+    }
+
+    // Interface to handle click events
+    public interface OnItemClickListener {
+        void onItemClick(CoffeeShop coffeeShop);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

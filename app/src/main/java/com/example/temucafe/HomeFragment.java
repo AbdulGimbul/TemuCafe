@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.temucafe.adapters.CoffeeShopAdapter;
 import com.example.temucafe.adapters.HorizontalCoffeeShopAdapter;
 import com.example.temucafe.adapters.MallAdapter;
 import com.example.temucafe.models.CoffeeShop;
@@ -25,16 +24,11 @@ import com.example.temucafe.models.Mall;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
@@ -194,7 +188,7 @@ public class HomeFragment extends Fragment {
                             industrialList.add(coffeeShop);
                         }
 
-                        Log.d("HomeFragment","Firestore cek" + industrialList.get(0).getName());
+                        Log.d("HomeFragment", "Firestore cek" + industrialList.get(0).getName());
                         industrialAdapter.notifyDataSetChanged(); // Refresh the list
                     } else {
                         Log.w("Firestore", "Error getting documents.", task.getException());

@@ -9,9 +9,9 @@
     android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <!-- Header -->
@@ -24,13 +24,13 @@
                 android:id="@+id/greeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
                 android:text="Whats up? apiiuw"
                 android:textColor="#8B572A"
                 android:textSize="18sp"
-                android:fontFamily="@font/raleway_bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Hamburger menu di paling kanan -->
             <ImageView
@@ -38,9 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_logout_24"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,14 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#834D1E"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:backgroundTint="#834D1E">
+            app:cardElevation="4dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <LinearLayout
@@ -68,20 +68,20 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Best temu of the week!"
                         android:textColor="#FCF2D9"
-                        android:textSize="14sp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/best_temu_name_location"
-                        android:text="GlasMacher\nCempaka Putih Barat"
-                        android:textSize="20sp"
-                        android:textColor="#FCF2D9"
-                        android:fontFamily="@font/raleway_bold"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="GlasMacher\nCempaka Putih Barat"
+                        android:textColor="#FCF2D9"
+                        android:textSize="20sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -89,19 +89,19 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="More info"
                             android:textColor="#FCF2D9"
-                            android:textSize="12sp"
-                            android:layout_marginTop="8dp"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"/>
+                            android:textSize="12sp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_more_info"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginLeft="5dp"/>
+                            android:src="@drawable/ic_more_info" />
 
                     </LinearLayout>
 
@@ -111,10 +111,10 @@
                     android:id="@+id/best_temu_image"
                     android:layout_width="88dp"
                     android:layout_height="88dp"
-                    android:src="@drawable/coffeshop_home_glass_coffe"
-                    android:scaleType="centerCrop"
                     android:layout_marginStart="8dp"
                     android:contentDescription="Coffee Image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/coffeshop_home_glass_coffe"
                     app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             </LinearLayout>
@@ -122,13 +122,13 @@
 
         <!-- Section 1 Title -->
         <TextView
-            android:text="Industrial's Coffee"
-            android:textSize="18sp"
-            android:layout_marginTop="24dp"
-            android:textColor="#8B572A"
-            android:fontFamily="@font/raleway_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Industrial's Coffee"
+            android:textColor="#8B572A"
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIndustrialCoffee"
@@ -141,13 +141,13 @@
 
         <!-- Section 2 Title -->
         <TextView
-            android:text="Let's find what you want!"
-            android:textSize="18sp"
-            android:layout_marginTop="24dp"
-            android:textColor="#8B572A"
-            android:fontFamily="@font/raleway_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Let's find what you want!"
+            android:textColor="#8B572A"
+            android:textSize="18sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -174,60 +174,60 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:gravity="center_vertical"
+                android:orientation="vertical"
                 android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="Search anything\ncoffeshop you want now!"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/raleway_bold" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Section 3 Title -->
         <TextView
-            android:text="Franchise's Coffee"
-            android:textSize="18sp"
-            android:layout_marginTop="24dp"
-            android:textColor="#8B572A"
-            android:fontFamily="@font/raleway_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Franchise's Coffee"
+            android:textColor="#8B572A"
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/franchise_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
             android:clipToPadding="false"
+            android:orientation="horizontal"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <!-- Section 3 Title -->
         <TextView
-            android:text="Coffee in Mall"
-            android:textSize="18sp"
-            android:layout_marginTop="24dp"
-            android:textColor="#8B572A"
-            android:fontFamily="@font/raleway_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Coffee in Mall"
+            android:textColor="#8B572A"
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mall_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
             android:clipToPadding="false"
+            android:orientation="horizontal"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>

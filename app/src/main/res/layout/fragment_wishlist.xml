@@ -7,9 +7,9 @@
     android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <!-- Header -->
@@ -22,67 +22,67 @@
                 android:id="@+id/greeting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/raleway_bold"
                 android:text="Let’s hangout with\nyour wishlist"
                 android:textColor="#8B572A"
                 android:textSize="18sp"
-                android:fontFamily="@font/raleway_bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/notifIcon"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/notifIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_notif_active"
-                app:layout_constraintEnd_toStartOf="@id/menuIcon"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintEnd_toStartOf="@id/menuIcon"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/menuIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_hamburger"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Wishlist Items -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
             <!-- Ulangi blok item ini sebanyak jumlah item -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/wishlist_item_background"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:background="@drawable/wishlist_item_background">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/wishlist_item_background"
                     android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/wishlist_item_background">
+                    android:padding="12dp">
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/coffeshop_terasa"
-                        android:scaleType="centerCrop"
                         android:layout_marginEnd="12dp"
                         android:background="@drawable/rounded_corner"
-                        android:clipToOutline="true"/>
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/coffeshop_terasa" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -93,27 +93,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Terasa,"
                             android:textColor="#8B572A"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/raleway_bold" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
                             android:text="Johar Baru Utara"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Details"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_marginTop="8dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -122,25 +122,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/wishlist_item_background"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:background="@drawable/wishlist_item_background">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/wishlist_item_background"
                     android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/wishlist_item_background">
+                    android:padding="12dp">
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/coffeshop_matea_social_space"
-                        android:scaleType="centerCrop"
                         android:layout_marginEnd="12dp"
                         android:background="@drawable/rounded_corner"
-                        android:clipToOutline="true"/>
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/coffeshop_matea_social_space" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -151,27 +151,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Matea Social Space,"
                             android:textColor="#8B572A"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/raleway_bold" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
                             android:text="Cempaka Putih Timur"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Details"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_marginTop="8dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -180,25 +180,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/wishlist_item_background"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:background="@drawable/wishlist_item_background">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/wishlist_item_background"
                     android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/wishlist_item_background">
+                    android:padding="12dp">
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/coffeshop_home_glass_coffe"
-                        android:scaleType="centerCrop"
                         android:layout_marginEnd="12dp"
                         android:background="@drawable/rounded_corner"
-                        android:clipToOutline="true"/>
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/coffeshop_home_glass_coffe" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -209,27 +209,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Glasmacher Coffee,"
                             android:textColor="#8B572A"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/raleway_bold" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
                             android:text="Cempaka Putih Barat"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/raleway_bold"
                             android:text="Details"
                             android:textColor="#8B572A"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/raleway_bold"
-                            android:layout_marginTop="8dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

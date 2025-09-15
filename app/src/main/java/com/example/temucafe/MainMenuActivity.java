@@ -1,12 +1,14 @@
 package com.example.temucafe;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.Window;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainMenuActivity extends AppCompatActivity {

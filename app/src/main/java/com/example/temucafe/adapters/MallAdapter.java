@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.temucafe.R;
 import com.example.temucafe.models.Mall;
+
 import java.util.List;
 
 public class MallAdapter extends RecyclerView.Adapter<MallAdapter.ViewHolder> {
@@ -19,17 +22,13 @@ public class MallAdapter extends RecyclerView.Adapter<MallAdapter.ViewHolder> {
     private final List<Mall> mallList;
     private OnItemClickListener listener;
 
-    public interface OnItemClickListener {
-        void onItemClick(Mall mall);
+    public MallAdapter(Context context, List<Mall> mallList) {
+        this.context = context;
+        this.mallList = mallList;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
-    }
-
-    public MallAdapter(Context context, List<Mall> mallList) {
-        this.context = context;
-        this.mallList = mallList;
     }
 
     @NonNull
@@ -48,6 +47,10 @@ public class MallAdapter extends RecyclerView.Adapter<MallAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mallList.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Mall mall);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

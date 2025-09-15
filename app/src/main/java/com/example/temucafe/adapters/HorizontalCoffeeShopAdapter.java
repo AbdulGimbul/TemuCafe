@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.temucafe.R;
 import com.example.temucafe.models.CoffeeShop;
+
 import java.util.List;
 
 public class HorizontalCoffeeShopAdapter extends RecyclerView.Adapter<HorizontalCoffeeShopAdapter.ViewHolder> {
@@ -20,17 +23,13 @@ public class HorizontalCoffeeShopAdapter extends RecyclerView.Adapter<Horizontal
     private final List<CoffeeShop> coffeeShopList;
     private OnItemClickListener listener;
 
-    public interface OnItemClickListener {
-        void onItemClick(CoffeeShop coffeeShop);
+    public HorizontalCoffeeShopAdapter(Context context, List<CoffeeShop> coffeeShopList) {
+        this.context = context;
+        this.coffeeShopList = coffeeShopList;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
-    }
-
-    public HorizontalCoffeeShopAdapter(Context context, List<CoffeeShop> coffeeShopList) {
-        this.context = context;
-        this.coffeeShopList = coffeeShopList;
     }
 
     @NonNull
@@ -49,6 +48,10 @@ public class HorizontalCoffeeShopAdapter extends RecyclerView.Adapter<Horizontal
     @Override
     public int getItemCount() {
         return coffeeShopList.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(CoffeeShop coffeeShop);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

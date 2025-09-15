@@ -8,15 +8,32 @@ public class Mall {
     private String name;
     private String imageUrl;
 
-    public Mall() {}
+    public Mall() {
+    }
 
     @Exclude
-    public String getDocumentId() { return documentId; }
-    public String getName() { return name; }
-    public String getImageUrl() { return imageUrl; }
+    public String getDocumentId() {
+        return documentId;
+    }
 
     @Exclude
-    public void setDocumentId(String documentId) { this.documentId = documentId; }
-    public void setName(String name) { this.name = name; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
