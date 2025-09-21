@@ -68,7 +68,7 @@ public class HorizontalCoffeeShopAdapter extends RecyclerView.Adapter<Horizontal
 
         public void bind(final CoffeeShop coffeeShop, final OnItemClickListener listener) {
             coffeeShopName.setText(coffeeShop.getName());
-            coffeeShopLocation.setText(coffeeShop.getLocation());
+//            coffeeShopLocation.setText(coffeeShop.getLocation());
             Glide.with(itemView.getContext()).load(coffeeShop.getLogoIconUrl()).into(coffeeShopImage);
             itemView.setOnClickListener(v -> {
                 if (listener != null) listener.onItemClick(coffeeShop);

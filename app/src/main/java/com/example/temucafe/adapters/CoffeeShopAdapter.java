@@ -68,7 +68,7 @@ public class CoffeeShopAdapter extends RecyclerView.Adapter<CoffeeShopAdapter.Vi
 
         public void bind(final CoffeeShop coffeeShop, final OnItemClickListener listener) {
             coffeeShopName.setText(coffeeShop.getName());
-            coffeeShopLocation.setText(coffeeShop.getLocation());
+//            coffeeShopLocation.setText(coffeeShop.getLocation());
 
             // Use Glide to load the image from a URL
             Glide.with(itemView.getContext())

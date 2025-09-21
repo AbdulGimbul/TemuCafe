@@ -43,7 +43,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/raleway_bold"
-            android:text="Location"
+            android:text=""
             android:textColor="@android:color/white"
             android:textSize="12sp" />
 
